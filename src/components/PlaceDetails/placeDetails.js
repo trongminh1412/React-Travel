@@ -1,6 +1,9 @@
 import React from 'react';
+// import useStyles from './styles';
 
-const placeDetails = () => {
-  return <div>placeDetails</div>;
+const PlaceDetails = ({ place }) => {
+  // const classes = useStyles();
+
+  return <h1>{place.name}</h1>;
 };
-export default placeDetails;
+export default PlaceDetails;
