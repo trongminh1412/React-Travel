@@ -1,10 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+// react17
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import App from './App';
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// react18
+import App from './App';
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(<App />);
