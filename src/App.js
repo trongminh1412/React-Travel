@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CssBaseline, Grid } from '@material-ui/core';
 import Header from './components/Header/header';
 import List from './components/List/list';
 import Map from './components/Map/map';
-import PlaceDetails from './components/PlaceDetails/placeDetails';
+import { getPlacesData } from './api';
 
 const App = () => {
+  const [places, setPlaces] = useState([]);
+
+  const [coordinates, setCoordinates] = useState({});
+  const [bounds, setBounds] = useState(null);
+
+  useEffect(() => {
+    getPlacesData().then((data) => {
+      console.log('check data:', data);
+      setPlaces(data);
+    });
+  }, []);
+
   return (
     <>
       <CssBaseline>
@@ -15,7 +27,11 @@ const App = () => {
             <List />
           </Grid>
           <Grid item xs={12} md={8}>
-            <Map />
+            <Map
+              setCoordinates={setCoordinates}
+              setBounds={setBounds}
+              coordinates={coordinates}
+            />
           </Grid>
         </Grid>
       </CssBaseline>
