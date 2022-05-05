@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 
 import PlaceDetails from '../PlaceDetails/placeDetails';
 
@@ -14,11 +14,13 @@ import {
 
 import useStyles from './styles';
 
-const List = ({ places }) => {
+const List = ({ places, childClicker }) => {
   const classes = useStyles();
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState(0);
+  const [elRefs, setElRefs] = useState([]);
 
+  useEffect(() => {}, [places]);
   return (
     <div className={classes.container}>
       <Typography variant="h4">
