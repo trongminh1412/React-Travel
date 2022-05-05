@@ -21,9 +21,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log(coordinates, bounds);
+    // console.log(coordinates, bounds);
     getPlacesData(bounds.sw, bounds.ne).then((data) => {
-      console.log('data', data);
+      // console.log('data', data);
       setPlaces(data);
     });
   }, [coordinates, bounds]);
@@ -34,7 +34,7 @@ const App = () => {
         <Header />
         <Grid container spacing={3} style={{ width: '100%' }}>
           <Grid item xs={12} md={4}>
-            <List places={places} setChildClicker={setChildClicker} />
+            <List places={places} childClicker={childClicker} />
           </Grid>
           <Grid item xs={12} md={8}>
             <Map
