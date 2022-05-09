@@ -14,24 +14,27 @@ import {
 
 import useStyles from './styles';
 
-const List = ({ places, childClicker, isloading }) => {
+const List = ({ places, childClicker, isLoading }) => {
   const classes = useStyles();
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState(0);
   const [elRefs, setElRefs] = useState([]);
 
   useEffect(() => {
-    const refs = Array(places.lenght)
-      .fill()
-      .map((_, i) => elRefs[i] || createRef());
+    setElRefs((refs) =>
+      Array(places?.length)
+        .fill()
+        .map((_, i) => refs[i] || createRef())
+    );
   }, [places]);
+
   return (
     <div className={classes.container}>
       <Typography variant="h4">
         Restaurants, Hotels & Attraction around you
       </Typography>
-      {isloading ? (
-        <div className={classes.isloading}>
+      {isLoading ? (
+        <div className={classes.loading}>
           <CircularProgress size="5rem" />
         </div>
       ) : (
@@ -59,7 +62,7 @@ const List = ({ places, childClicker, isloading }) => {
                 <PlaceDetails
                   place={place}
                   selected={Number(childClicker) === i}
-                  refProp={elRefs}
+                  refProp={elRefs[i]}
                 />
               </Grid>
             ))}

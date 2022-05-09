@@ -12,6 +12,10 @@ const App = () => {
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
   const [bounds, setBounds] = useState({});
 
+  const [isLoading, setIsLoading] = useState(false);
+  // const [type, setType] = useState('restaurants');
+  // const [rating, setRating] = useState(0);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -21,10 +25,12 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     // console.log(coordinates, bounds);
     getPlacesData(bounds.sw, bounds.ne).then((data) => {
       // console.log('data', data);
       setPlaces(data);
+      setIsLoading(false);
     });
   }, [coordinates, bounds]);
 
@@ -34,7 +40,15 @@ const App = () => {
         <Header />
         <Grid container spacing={3} style={{ width: '100%' }}>
           <Grid item xs={12} md={4}>
-            <List places={places} childClicker={childClicker} />
+            <List
+              places={places}
+              childClicker={childClicker}
+              isLoading={isLoading}
+              // type={type}
+              // setType={setType}
+              // rating={rating}
+              // setRating={setRating}
+            />
           </Grid>
           <Grid item xs={12} md={8}>
             <Map
