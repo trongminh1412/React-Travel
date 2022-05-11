@@ -16,7 +16,7 @@ import useStyles from './styles';
 
 const List = ({
   places,
-  childClicker,
+  childClicked,
   isLoading,
   type,
   setType,
@@ -67,7 +67,7 @@ const List = ({
               <Grid ref={elRefs[i]} item key={i} xs={12}>
                 <PlaceDetails
                   place={place}
-                  selected={Number(childClicker) === i}
+                  selected={Number(childClicked) === i}
                   refProp={elRefs[i]}
                 />
               </Grid>
